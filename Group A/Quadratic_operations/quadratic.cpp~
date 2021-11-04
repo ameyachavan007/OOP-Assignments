@@ -1,0 +1,88 @@
+/*
+Implement a class Quadratic that represents degree two polynomials i.e.,
+polynomials of type ax 2 +bx+c. The class will require three data members
+corresponding to a, b and c.
+Implement the following operations:
+1. A constructor (including a default constructor which creates the
+0
+polynomial).
+2. Overloaded operator+ to add two polynomials of degree 2.
+3. Overloaded << and >> to print and read polynomials. To do this,
+you will need to decide what you want your input and output format
+to look like.
+4. A function eval that computes the value of a polynomial for a given
+value of x.
+5. A function that computes the two solutions of the equation
+ax 2
++bx+ c=0..
+*/
+
+
+#include<iostream>
+#include<cmath>
+using namespace std;
+
+class Quadratic{
+
+	private:
+		int a,b,c,ans,discriminant,r1,r2;
+	public:
+		Quadratic(){
+			int a,b,c,ans=0;
+}
+
+	friend istream &operator >>(istream &input, Quadratic &q){
+		cout<<"Enter the values of coefficient for ax^2+bx+c: "<<endl;
+		input>>q.a>>q.b>>q.c;
+		return input;
+}
+
+	friend ostream &operator <<(ostream &output, Quadratic &q){
+		output<<q.a<<"x^2 +"<<q.b<<"x +"<<q.c;
+		return output;
+}
+
+		void eval(int x);
+		void roots();
+
+	Quadratic operator +(Quadratic q2){
+	Quadratic q3;
+	q3.a=a+q2.a;
+	q3.b=b+q2.b;
+	q3.c=c+q2.c;
+
+}
+
+};
+
+void Quadratic:: eval(int x){
+	ans=(a*x*x)+(b*x)+c;
+	cout<<"The value of equation is:"<<ans;
+}
+
+void Quadratic:: roots(){
+	discriminant=(b*b)-(4*a*c);
+	if(discriminant<0){
+	cout<<"Roots are imaginary"<<endl;
+}
+	else if(discriminant>0){
+	cout<<"The roots are real"<<endl;
+	r1= (-b + sqrt(discriminant))/2*a;
+	r1= (-b - sqrt(discriminant))/2*a;
+	cout<<"Roots are: "<<r1<<" & "<<r2;
+}
+	
+}
+
+int main(){
+Quadratic q1,q2,q3;
+cin>>q1;
+cout<<q1;
+cin>>q2;
+cout<<q2;
+q3=q1+q2;
+cout<<q3;
+q1.eval(5);
+q1.roots();
+return 0;
+}
